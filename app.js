@@ -1,17 +1,17 @@
-function setAttributes (tag , atributes = { id : 'an id' , class : 'a class name'}) {
+function setAttributes(tag, atributes = { id: 'an id', class: 'a class name' }) {
     let keys = Object.keys(atributes);
-    for(key of keys ){
-        if(key != 'innerText'){
-            tag.setAttribute(key , atributes[key]);
-        } 
+    for (key of keys) {
+        if (key != 'innerText') {
+            tag.setAttribute(key, atributes[key]);
+        }
         //exceptions
         else {
             //inner Text
-            if(key == 'innerText'){
+            if (key == 'innerText') {
                 tag.innerText = atributes[key];
-            } 
+            }
             //class name , use class atribute in atributes object
-            else if (key == 'class'){
+            else if (key == 'class') {
                 tag.classList.add(atributes[key]);
             }
         }
@@ -19,32 +19,32 @@ function setAttributes (tag , atributes = { id : 'an id' , class : 'a class name
 }
 
 const app = {
-    books : {
+    books: {
 
-    } ,
+    },
     //utilities
-    setBook :function(title , content){
+    setBook: function (title, content) {
         //set data
-        this.books[title] = {} ;
-        this.books[title].title = title ;
+        this.books[title] = {};
+        this.books[title].title = title;
         this.books[title].content = content;
         //set and add html tag to aside 
         let parent = document.querySelector('#aside').firstElementChild;
 
-       //component 
-        let component = 
-        `   <div class="book" id = "${title}">
+        //component 
+        let component =
+            `   <div class="book" id = "${title}">
                 <p>${title}</p>
             </div>
         `;
 
         parent.innerHTML += component;
 
-    } ,
-    setNewBookForm: function(){
-            //set form
-        let component = 
-        `
+    },
+    setNewBookForm: function () {
+        //set form
+        let component =
+            `
         <form action="#" method="get" id = 'new-book-form'>
             <div id = 'Title'>
                 <label for="title"> Title* </label>
@@ -60,14 +60,14 @@ const app = {
         </form>
         `;
 
-            //append form to content
+        //append form to content
         let content = document.querySelector("#content");
-        content.innerText = ''; 
-        content.innerHTML = component ;
-        
-        return document.querySelector('#new-book-form'); 
+        content.innerText = '';
+        content.innerHTML = component;
+
+        return document.querySelector('#new-book-form');
     },
-    setDelBookForm : function(){
+    setDelBookForm: function () {
         //component
         let component = `
         <form action="#" method="#" id = 'del-book-form'>
@@ -87,7 +87,7 @@ const app = {
         let content = document.querySelector('#content');
         content.innerText = '';
         content.innerHTML = component;
-        
+
         return document.querySelector('#del-book-form');
     },
     switchBackgroundMode: function (tag) {
@@ -131,7 +131,7 @@ const app = {
     },
 
     //methods for events
-    showBookInfo:function(id){
+    showBookInfo: function (id) {
         //set component
         let component = `
             <div id = 'bookInfo'>
@@ -144,30 +144,30 @@ const app = {
         //append it
         document.querySelector("#content").innerHTML = component;
     },
-    addBook : function(){
-        this.setNewBookForm().addEventListener('submit' , eve =>{
+    addBook: function () {
+        this.setNewBookForm().addEventListener('submit', eve => {
             //stop submition
             eve.preventDefault();
             //get and save form input values
-            let inputs = {} ;
-            ['Title' , 'Description'].forEach(str => {
+            let inputs = {};
+            ['Title', 'Description'].forEach(str => {
                 inputs[str] = document.querySelector(`#${str}`).lastElementChild;
             })
             //create new book 
-            this.setBook(inputs.Title.value , inputs.Description.value);
-        
+            this.setBook(inputs.Title.value, inputs.Description.value);
+
             //empty content
             document.querySelector('#content').innerText = '';
         });
     },
-    delBook : function(){
-        this.setDelBookForm().addEventListener('submit' , eve =>{
+    delBook: function () {
+        this.setDelBookForm().addEventListener('submit', eve => {
             //stop submition
             eve.preventDefault();
-            
+
             //if book exist remove from books object and aside 
             let title = document.querySelector('#title');
-            if(this.books[title.value] != undefined){
+            if (this.books[title.value] != undefined) {
                 // then remove for aside 
                 let asideBook = document.querySelector(`#${title.value}`);
                 asideBook.parentElement.removeChild(asideBook);
@@ -179,45 +179,52 @@ const app = {
         });
     },
     setEventListeners: function () {
-      
+        //set sample books
+        [{title : "Robin Hood" , desc : "bla bla bla"} , {title : "The Hobit" , desc : "bla bla bla"}].forEach(book =>{
+            for(let i = 0 ; i<= 20 ; i++){
+                app.setBook(book.title , book.desc);
+            }
+        })
+
         let nav = document.querySelector('#nav');
-        let aside =  document.querySelector('#aside');
-        let content =  document.querySelector('#content');
+        let aside = document.querySelector('#aside');
+        let content = document.querySelector('#content');
 
         //navigation var events
-        nav.addEventListener('click' , eve =>{
-            switch(eve.target.id){
+        nav.addEventListener('click', eve => {
+            switch (eve.target.id) {
                 //add book
-                case "addBttn" :
+                case "addBttn":
                     this.addBook();
-                break;
+                    break;
                 //switch background mode 
-                case 'backgroundMode' :
+                case 'backgroundMode':
                     this.switchBackgroundMode(eve.target);
-                break;
+                    break;
                 //del book
                 case 'delBttn':
                     this.delBook();
-                break;
+                    break;
             }
         })
 
         //main-> aside events
-        aside.addEventListener('click' , eve =>{
-            switch(eve.target.getAttribute('class')){
+        aside.addEventListener('click', eve => {
+            switch (eve.target.getAttribute('class')) {
                 //show book info 
-                case  'book' :
+                case 'book':
                     this.showBookInfo(eve.target.getAttribute('id'));
-                break;
+                    break;
             }
         });
 
         // main-> content events
-        content.addEventListener("click" , eve =>{
+        content.addEventListener("click", eve => {
 
         })
     },
 
 }
+
 
 app.setEventListeners();
