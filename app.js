@@ -47,17 +47,15 @@ const app = {
         let component =
             `<form action="#" method = "get" id="new-book-form" >
             <div>
-                <div class="form-field">
-                    <label for="description">Description*</label>
-                    <textarea 
-                        type="text" 
-                        name="description" 
-                        id="description" 
-                        placeholder="Description*"
-                        required
-                    >
-                    </textarea>
-                </div>
+                <label for="description">Description*</label>
+                <textarea 
+                    type="text" 
+                    name="description" 
+                    id="description" 
+                    placeholder="Description*"
+                    required       
+                >
+                </textarea>
             </div>
             <div>
                 <div class="form-field">
@@ -81,6 +79,7 @@ const app = {
                     >
                 </div>
                 <div class="form-field">
+                    <label for="author">Author*</label>
                     <input 
                         type="text" 
                         name="autor" 
@@ -93,8 +92,7 @@ const app = {
                     <button>Add to Collection</button>
                 </div>
             </div>
-        </form>
-        `;
+        </form>`;
 
         //append form to content
         let content = document.querySelector("#content");
@@ -105,20 +103,15 @@ const app = {
     },
     setDelBookForm: function () {
         //component
-        let component = `
-        <form action="#" method="#" id = 'del-book-form'>
-            <div>
-                <label for="title"> Title* </label>
-                <input type="text" id = 'title'>
-            </div>
-            <div>
-                <button type = 'submit'>Delete Book</button>
-            </div>
-            <div>
-                <p>Caution book will be erased*</p>
-            </div>
-        </form>
-        `;
+        let component = 
+        `<div id="del-book-form">
+        <div class = 'del-form-field'>
+            <label for="titel">Title*</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div class = "del-form-field">
+            <button>Delete Book</button>
+        </div>`;
         //add to doom
         let content = document.querySelector('#content');
         content.innerText = '';
