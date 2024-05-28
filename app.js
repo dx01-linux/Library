@@ -23,20 +23,21 @@ const app = {
 
     },
     //utilities
-    setBook: function (title, content) {
+    setBook: function (title, author , year , content ) {
         //set data
         this.books[title] = {};
         this.books[title].title = title;
+        this.books[title].author = author;
+        this.books[title].year = year ;
         this.books[title].content = content;
         //set and add html tag to aside 
-        let parent = document.querySelector('#aside').firstElementChild;
+        let parent = document.querySelector('#aside').lastElementChild;
 
         //component 
         let component =
-            `   <div class="book" id = "${title}">
+            `<div class="book" id = "${title}">
                 <p>${title}</p>
-            </div>
-        `;
+            </div>`;
 
         parent.innerHTML += component;
 
@@ -44,18 +45,53 @@ const app = {
     setNewBookForm: function () {
         //set form
         let component =
-            `
-        <form action="#" method="get" id = 'new-book-form'>
-            <div id = 'Title'>
-                <label for="title"> Title* </label>
-                <input type="text" id = 'title' required>
+            `<form action="#" method = "get" id="new-book-form" >
+            <div>
+                <div class="form-field">
+                    <label for="description">Description*</label>
+                    <textarea 
+                        type="text" 
+                        name="description" 
+                        id="description" 
+                        placeholder="Description*"
+                        required
+                    >
+                    </textarea>
+                </div>
             </div>
-            <div id = 'Description'>
-                <label for="desc"> Description* </label>
-                <textarea id="desc" required></textarea>
-            </div>
-            <div id = 'Submit'>
-                <button type = 'submit'>Add</button>
+            <div>
+                <div class="form-field">
+                    <label for="title">Title*</label>
+                    <input 
+                        type="text" 
+                        name="title" 
+                        id="title" 
+                        placeholder="Title*"
+                        required
+                    >
+                </div>
+                <div class="form-field">
+                    <label for="title">Year*</label>
+                    <input 
+                        type="text" 
+                        name="year" 
+                        id="year"
+                        placeholder="Year*" 
+                        required
+                    >
+                </div>
+                <div class="form-field">
+                    <input 
+                        type="text" 
+                        name="autor" 
+                        id="author"
+                        placeholder="Author*" 
+                        required
+                    >
+                </div>
+                <div class="form-field">
+                    <button>Add to Collection</button>
+                </div>
             </div>
         </form>
         `;
@@ -150,11 +186,11 @@ const app = {
             eve.preventDefault();
             //get and save form input values
             let inputs = {};
-            ['Title', 'Description'].forEach(str => {
-                inputs[str] = document.querySelector(`#${str}`).lastElementChild;
+            ['title', 'description' , 'year' , 'author'].forEach(str => {
+                inputs[str] = document.querySelector(`#${str}`);
             })
             //create new book 
-            this.setBook(inputs.Title.value, inputs.Description.value);
+            this.setBook(inputs.title.value, inputs.author.value , inputs.year.value , inputs.description.value);
 
             //empty content
             document.querySelector('#content').innerText = '';
@@ -179,9 +215,9 @@ const app = {
         });
     },
     setEventListeners: function () {
-        //set sample books
+        // set sample books
         [{title : "Robin Hood" , desc : "bla bla bla"} , {title : "The Hobit" , desc : "bla bla bla"}].forEach(book =>{
-            for(let i = 0 ; i<= 20 ; i++){
+            for(let i = 0 ; i<= 4 ; i++){
                 app.setBook(book.title , book.desc);
             }
         })
