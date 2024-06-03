@@ -9,42 +9,32 @@
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div id="wrapper">
-        <div id="nav">
-            <div class="navSection">
-                <div class="userImgBall"></div>
-                <div id = 'userName' class="navBttn">
-                    <p>DxCode@</p>
+    <div class="wrapper wrapper--layout">
+        <nav id = 'nav' class="nav nav--darkTheme" >
+            <div class ="nav__section nav__section-w">
+                <div class="nav__ballImg ballImg--lightTheme"></div>
+                <div>
+                    <p class = "bttn">DxCode@</p>
                 </div>
             </div>
-            <div class="navSection">
-                <button id = 'delBttn' class="navBttn">Del Book</button>
-                <button id = "addBttn" class="navBttn">Add Book</button>
-                <i id = 'backgroundMode'class="fa-solid fa-sun navBttn"></i>
+            <div class ="nav__section nav__section-w">
+                <button id = 'delBttn'class = "bttn bttn--redTheme " >Del Book</button>
+                <button id = 'addBttn'class = "bttn bttn--greenTheme" >Add Book</button>
+                <i class="fa-solid fa-sun icon icon--goldenTheme"></i>
             </div>
-        </div>
-        <div id="main">
-            <div id="content">
-                <div id="del-book-form">
-                    <div class = 'del-form-field'>
-                        <label for="titel">Title*</label>
-                        <input type="text" name="title" id="title">
-                    </div>
-                    <div class = "del-form-field">
-                        <button>Delete Book</button>
-                    </div>
-                    <div><small>Caution , Book will be deleted</small></div>
-                </div>
+        </nav>
+        <div class="main">
+            <div id="content" class="content content--layout" > 
             </div>
-            <div id="aside">
-                <div id = header>
-                    <h1>Books Collection</h1>
+            <div id = 'aside'class ="main__aside main__aside--darkTheme">
+                <div class="aside__header header--darkTheme ">
+                    <p>Books Collection</p>
                 </div>
-                <div id = 'books'>
-
+                <div class = 'aside__collection collection--layout'>
                 </div>
             </div>
         </div>
+       
     </div>
 </body>
 </html>
