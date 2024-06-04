@@ -329,13 +329,24 @@ const Aside = (()=> {
         //events liseners
         eve();
         //render test book
-        setBookData({
-            title : 'test' ,
-            year : 2024 ,
-            author : 'me' ,
-            content : "lore lore upsu"
-        });
-        renderNewBook('test');
+
+            let content = (times , string) => {
+                let str = string ;
+                for(let i = 0 ; i<= times ; i++ ){
+                    str += string ;
+                }
+                return str ;
+            }
+    
+            obj = {
+                title : 'test' ,
+                author : 'yo' ,
+                year : 2024 ,
+                content : content(400 , 'lore lore upsu upsu'),
+            }
+            renderNewBook(obj.title);
+            setBookData(obj);
+        
 
         //publish to renderBookInfo if book is click on
         
