@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>library</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="animations.css">
     <script src="https://kit.fontawesome.com/1758d25008.js"></script>
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="wrapper wrapper--layout">
+    <div id = 'wrapper' class="wrapper wrapper--layout">
         <nav id = 'nav' class="nav nav--darkTheme" >
             <div class ="nav__section nav__section-w">
                 <div class="nav__ballImg ballImg--lightTheme"></div>
                 <div>
-                    <p class = "bttn">DxCode@</p>
+                    <p id = 'userName' class = "bttn">DxCode@</p>
                 </div>
             </div>
             <div class ="nav__section nav__section-w">
@@ -30,11 +31,10 @@
                 <div class="aside__header header--darkTheme ">
                     <p>Books Collection</p>
                 </div>
-                <div class = 'aside__collection collection--layout'>
+                <div id = 'collection'class = 'aside__collection collection--layout'>
                 </div>
             </div>
         </div>
-       
     </div>
 </body>
 </html>

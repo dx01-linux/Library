@@ -1,0 +1,11 @@
+@keyframes shake {
+    0% { transform: rotate(5deg);}
+    50% {transform: rotate(-5deg);}
+    75%{transform: rotate(-5deg);}
+}
+.animate-bttn{
+    animation-duration: 2s;
+    animation-name: shake ;
+}
+
+    
